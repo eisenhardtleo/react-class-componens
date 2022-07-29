@@ -38,6 +38,15 @@ class App extends Component {
     cards[id].quantità++;
     this.setState({cards});
   }
+  handleDecrement = card => {
+    const cards = [...this.state.cards];
+    const id = cards.indexOf(card);
+    cards[id] = {...card};
+    if (cards[id].quantità > 0) {
+      cards[id].quantità--;
+    }
+    this.setState({cards});
+  }
 
   render(){
   return (
@@ -56,6 +65,7 @@ class App extends Component {
                   immagine={card.immagine}
                   quantità={card.quantità}
                   onIncrement={this.handleIncrement}
+                  onDecrement={this.handleDecrement}
                   onDelete={this.handleDelete}
                   card={card}
             />
